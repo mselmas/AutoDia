@@ -1,6 +1,6 @@
-package Pages;
+package Pages.New;
 
-import CodeFactory.BackgroundPanel;
+import CodeFactory.IconsFactory;
 import CodeFactory.ShadowPanel;
 import com.aribilgi.java.Database.DbAccess;
 import com.aribilgi.java.Database.DbCrud;
@@ -17,6 +17,7 @@ public class Giris extends JFrame {
     DbAccess dbAccess;
     DbCrud dbCrud;
 
+    IconsFactory iconsFactory = new IconsFactory();
     public Giris() {
 
         dbAccess = new DbAccess("root",
@@ -24,77 +25,65 @@ public class Giris extends JFrame {
 
         dbCrud = new DbCrud(dbAccess.getConnection());
 
-        /*
-        ImageIcon imageIcon = new ImageIcon("/Users/msalih/Desktop/Developer/aribilgi_java/AutoDia/src/images/gradient.png");
-        Image image2 = imageIcon.getImage();
-
-        BackgroundPanel backgroundPanel = new BackgroundPanel(image2,2);
-        backgroundPanel.getPreferredSize();
-        add(backgroundPanel);
-        --------
-        JPanel backgroundPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                // Arka plan resmini yükleyin
-                ImageIcon imageIcon = new ImageIcon("/Users/msalih/Desktop/Developer/aribilgi_java/AutoDia/src/images/gradient.png");
-                Image image = imageIcon.getImage();
-                // Resmi tüm panel boyutuna ölçekleyin ve çizin
-                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
-        backgroundPanel.setBounds(0, 0, getWidth(), getHeight());
-        add(backgroundPanel);
-
-         */
-
         getContentPane().setBackground(new java.awt.Color(107, 123, 137));
         setLocation(650, 200); //Sayfanın ekrandaki konumunu gösteriyor
         setLayout(null);
         setSize(1000, 750); //Sayfanın gerçek büyüklüğünü gösteriyor
-        setTitle("Yetkili Kullanıcı Girişi");
+        setTitle("AutoDia OOS Yetkili Kullanıcı Giriş Sorgu Ekranı");
         setResizable(false); //ekran boyutunu değiştirmeyi engelliyor
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Label'i panel oluşturarak ekledik
-        JLabel label = new JLabel("AutoDia Otopark Kayıt Sistemi");
+        JLabel label = new JLabel("AutoDia Otopark Otomasyon Sistemi", JLabel.CENTER);
         label.setFont(new Font("Futura", Font.PLAIN, 26));
         label.setForeground(new java.awt.Color(241, 236, 236));
 
         JPanel newPanel = new JPanel();
         newPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         newPanel.setBackground(new java.awt.Color(107, 123, 137));
-        newPanel.setBounds(310, 80, 370, 50);
+        newPanel.setBounds(280, 95, 450, 50);
         newPanel.add(label);
         add(newPanel);
 
-        Image image1 = new ImageIcon(Giris.class.getResource("/images/greylogo3.png")).getImage(); // Resmi al
-        JLabel icon = new JLabel(new ImageIcon(image1));
-        icon.setBounds(420, 160, 150, 80);
-        add(icon);
+        JLabel logo = iconsFactory.createAutoDiaLogo(400, 160, 200, 80);
+        add(logo);
+
+        JLabel ykGiris = new JLabel("Yetkili Kullanıcı Girişi", JLabel.CENTER);
+        ykGiris.setForeground(new java.awt.Color(241, 236, 236));
+        ykGiris.setFont(new Font("Futura", Font.PLAIN, 20));
+
+        JPanel newPanel2 = new JPanel();
+        newPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        newPanel2.setBackground(new java.awt.Color(107, 123, 137));
+        newPanel2.setBounds(270, 280, 450, 50);
+        newPanel2.add(ykGiris);
+        add(newPanel2);
 
         //Optionpane'deki ikon için resize ediyoruz
-        int newWidth = 75; // Yeni boyut için genişlik ve yükseklik değerlerini belirleyin
+        int newWidth = 75; // Yeni boyut için genişlik ve yükseklik değerlerini belirledik
         int newHeight = 75;
 
+        Image image1 = new ImageIcon(Giris.class.getResource("/images/greylogo3.png")).getImage(); // Resmi al
         Image newImage = image1.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH); // Resmi yeni boyutla yeniden ölçeklendirin
         ImageIcon iconResized = new ImageIcon(newImage); // Yeniden boyutlandırılmış resmi kullanarak yeni bir ImageIcon oluştur
 
         JPanel panel = new ShadowPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new java.awt.Color(39, 74, 112));
-        panel.setBounds(320, 290, 350, 250);
+        panel.setBounds(320, 330, 350, 250);
 
         JLabel usernameLabel = new JLabel("Kullanıcı Adınız");
         usernameLabel.setForeground(new java.awt.Color(241, 236, 236));
         usernameLabel.setFont(new Font("Futura", Font.PLAIN, 14));
+
         JTextField usernameField = new JTextField();
         usernameField.setPreferredSize(new Dimension(180, 40));
 
         JLabel passwordLabel = new JLabel("Şifreniz");
         passwordLabel.setForeground(new java.awt.Color(241, 236, 236));
         passwordLabel.setFont(new Font("Futura", Font.PLAIN, 14));
+
         JPasswordField passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension(180, 40));
 
@@ -108,69 +97,6 @@ public class Giris extends JFrame {
         btngiris.setPreferredSize(new Dimension(120, 50));
         btngiris.setFont(new Font("Futura", Font.PLAIN, 12));
         btngiris.setBackground(new java.awt.Color(210, 205, 205));
-
-
-        /*
-        JLabel label1 = new JLabel("Kullanıcı Adınız");
-        label1.setFont(new Font("Futura", Font.PLAIN, 14));
-        label1.setBounds(253, 200, 150, 30);
-        add(label1);
-        JTextField usernameField = new JTextField();
-        usernameField.setBounds(248, 221, 180, 30);
-        usernameField.setForeground(new java.awt.Color(0, 0, 0));
-        add(usernameField);
-
-        JLabel label2 = new JLabel("Şifreniz");
-        label2.setFont(new Font("Futura", Font.PLAIN, 14));
-        label2.setBounds(253, 250, 150, 30);
-        add(label2);
-
-        JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(248, 271, 180, 30);
-        passwordField.setForeground(new java.awt.Color(0, 0, 0));
-        add(passwordField);
-
-        JButton btngiris = new JButton("GİRİŞ");
-        btngiris.setBounds(248, 320, 180, 80);
-        btngiris.setBackground(Color.GRAY);
-        btngiris.setForeground(new java.awt.Color(0, 0, 0));
-        add(btngiris);
-
-
-
-         */
-
-        /*
-//Herhangi bir icon ya da resim eklemek için
-        JLabel background = new JLabel(new ImageIcon("/Users/msalih/Desktop/Developer/aribilgi_java/AutoDia/misc/autodiadark.png"));
-        background.setBounds(500, 0, 1000, 750);
-        getContentPane().add(background);
-
-         */
-
-        /*
-        JPanel panel2 = new JPanel();
-        panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panel2.setBounds(20,250,300,220);
-        panel2.setBackground(new java.awt.Color(77, 87, 164));
-        add(panel2);
-
-        JButton b1 = new JButton("Kayıt Ol");
-        b1.setBackground(Color.GRAY);
-        JButton b2 = new JButton("Giriş");
-        b2.setBackground(Color.GRAY);
-        JButton b3 = new JButton("Çıkış");
-        b3.setBackground(Color.GRAY);
-        JButton b4 = new JButton("Yenile");
-        b4.setBackground(Color.GRAY);
-        panel2.add(b1);
-        panel2.add(b2);
-        panel2.add(b3);
-        panel2.add(b4);
-
-
-         */
-
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
@@ -211,14 +137,13 @@ public class Giris extends JFrame {
 
         add(panel);
 
-        JLabel last = new JLabel("2023 © AutoDia");
+        JLabel last = new JLabel("2023 © AutoDia OOS");
         last.setForeground(new java.awt.Color(241, 236, 236));
-        last.setBounds(450, 680, 150, 30);
+        last.setBounds(430, 680, 150, 30);
         last.setFont(new Font("Futura", Font.PLAIN, 14));
         add(last);
 
-
-        usernameField.setText("msalih");
+        usernameField.setText("sgungor");
         usernameField.setFont(new Font("Futura", Font.PLAIN, 14));
         passwordField.setText("1234");
         passwordField.setFont(new Font("Futura", Font.PLAIN, 14));
@@ -247,8 +172,7 @@ public class Giris extends JFrame {
                         timer.start();
 
                         JOptionPane.showMessageDialog(null, "Giriş Başarılı", "Hoşgeldiniz", JOptionPane.INFORMATION_MESSAGE, iconResized);
-                        //dispose();
-                        new MainPage2().setVisible(true); //Yeni üretilen sayfanın görünmesini
+                        new MainPage().setVisible(true); //Yeni üretilen sayfanın görünmesini
                         setVisible(false);
 
                     } else {

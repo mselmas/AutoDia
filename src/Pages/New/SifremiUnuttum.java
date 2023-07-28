@@ -1,8 +1,7 @@
-package Pages;
+package Pages.New;
 
 import CodeFactory.IconsFactory;
 import CodeFactory.ShadowPanel;
-import Pages.New.Giris;
 import com.aribilgi.java.Database.DbAccess;
 import com.aribilgi.java.Database.DbCrud;
 
@@ -37,7 +36,7 @@ public class SifremiUnuttum extends JFrame {
         setLocation(650, 200); //Sayfanın ekrandaki konumunu gösteriyor
         setLayout(null);
         setSize(1000, 750); //Sayfanın gerçek büyüklüğünü gösteriyor
-        setTitle("AutoDia Yetkili Kullanıcı Anasayfa");
+        setTitle("AutoDia OOS Şifre Sorgu Ekranı");
         setResizable(false); //ekran boyutunu değiştirmeyi engelliyor
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,6 +52,14 @@ public class SifremiUnuttum extends JFrame {
 
         JButton backButton = iconsFactory.createBackButton(backListener);
         add(backButton);
+
+        //Optionpane'deki ikon için resize ediyoruz
+        int newWidth = 75; // Yeni boyut için genişlik ve yükseklik değerlerini belirleyin
+        int newHeight = 75;
+
+        Image image1 = new ImageIcon(AracGirisKayit.class.getResource("/images/greylogo3.png")).getImage(); // Resmi al
+        Image newImage = image1.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH); // Resmi yeni boyutla yeniden ölçeklendirin
+        ImageIcon iconResized = new ImageIcon(newImage); // Yeniden boyutlandırılmış resmi kullanarak yeni bir ImageIcon oluştur
 
         //Label'i panel oluşturarak ekledik
         JLabel label = new JLabel("AutoDia Otopark Otomasyon Sistemi", JLabel.CENTER);
@@ -174,10 +181,10 @@ public class SifremiUnuttum extends JFrame {
                         String emailFromDB = rs.getString("email");
 
                         if (usernameFromDB.equals(usernameField.getText().trim()) || emailFromDB.equals(emailField.getText().trim())) {
-                            JOptionPane.showMessageDialog(null, "Şifre sıfırlama linki veritabanında kayıtlı email adresinize gönderilmiştir", "Bilgi", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Şifre sıfırlama linki veritabanında kayıtlı email adresinize gönderilmiştir", "Bilgi", JOptionPane.INFORMATION_MESSAGE, iconResized);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Kullanıcı adı veya email adresi veritabanında kayıtlı değil!", "Hata", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Kullanıcı adı veya email adresi veritabanında kayıtlı değil!", "Hata", JOptionPane.ERROR_MESSAGE, iconResized);
                     }
 
                 } catch (SQLException ex) {
@@ -195,10 +202,5 @@ public class SifremiUnuttum extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        SifremiUnuttum sifremiUnuttum = new SifremiUnuttum();
-        sifremiUnuttum.setVisible(true);
-
-    }
 
 }

@@ -8,17 +8,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainPage2 extends JFrame {
+public class MainPage extends JFrame {
 
     IconsFactory iconsFactory = new IconsFactory();
 
-    public MainPage2() {
+    public MainPage() {
 
         getContentPane().setBackground(new java.awt.Color(107, 123, 137));
         setLocation(650, 200); //Sayfanın ekrandaki konumunu gösteriyor
         setLayout(null);
         setSize(1000, 900); //Sayfanın gerçek büyüklüğünü gösteriyor
-        setTitle("AutoDia Yetkili Kullanıcı Anasayfa");
+        setTitle("AutoDia OOS Yetkili Kullanıcı Anasayfa");
         setResizable(false); //ekran boyutunu değiştirmeyi engelliyor
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +74,7 @@ public class MainPage2 extends JFrame {
         shadowPanel.setBackground(new java.awt.Color(39, 74, 112));
         shadowPanel.setBounds(300, 280, 400, 500);
 
-        JButton btnAbonelikIslemleri = new JButton("Abone Kayıt İşlemleri");
+        JButton btnAbonelikIslemleri = new JButton("Abone Kayıt İşlemi");
         btnAbonelikIslemleri.setPreferredSize(new Dimension(200, 50));
         btnAbonelikIslemleri.setFont(new Font("Futura", Font.PLAIN, 14));
         btnAbonelikIslemleri.setBackground(new java.awt.Color(210, 205, 205));
@@ -89,7 +89,7 @@ public class MainPage2 extends JFrame {
         btnCikisKayit.setFont(new Font("Futura", Font.PLAIN, 14));
         btnCikisKayit.setBackground(new java.awt.Color(210, 205, 205));
 
-        JButton btnOtoparkGuncel = new JButton("Otopark Aktif Grafik");
+        JButton btnOtoparkGuncel = new JButton("Otopark Güncel Grafik");
         btnOtoparkGuncel.setPreferredSize(new Dimension(200, 50));
         btnOtoparkGuncel.setFont(new Font("Futura", Font.PLAIN, 14));
         btnOtoparkGuncel.setBackground(new java.awt.Color(210, 205, 205));
@@ -99,7 +99,7 @@ public class MainPage2 extends JFrame {
         btnTumKayitlariListele.setFont(new Font("Futura", Font.PLAIN, 14));
         btnTumKayitlariListele.setBackground(new java.awt.Color(210, 205, 205));
 
-        JButton btnGuncelKayitlariListele = new JButton("Otopark Aktif Liste");
+        JButton btnGuncelKayitlariListele = new JButton("Otopark Güncel Liste");
         btnGuncelKayitlariListele.setPreferredSize(new Dimension(200, 50));
         btnGuncelKayitlariListele.setFont(new Font("Futura", Font.PLAIN, 14));
         btnGuncelKayitlariListele.setBackground(new java.awt.Color(210, 205, 205));
@@ -158,7 +158,7 @@ public class MainPage2 extends JFrame {
         btnAbonelikIslemleri.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AbonelikIslemleri().setVisible(true);
+                new AboneKayitIslemi().setVisible(true);
                 setVisible(false);
             }
         });
@@ -169,12 +169,6 @@ public class MainPage2 extends JFrame {
                 AracGirisKayit aracGirisKayit3 = new AracGirisKayit();
                 aracGirisKayit3.setVisible(true);
                 setVisible(false);
-
-                /*
-                new AracGirisKayit().setVisible(true);
-                setVisible(false);
-
-                 */
             }
         });
 
@@ -194,12 +188,6 @@ public class MainPage2 extends JFrame {
                 otoparkGuncelGrafik.setVisible(true);
                 setVisible(false);
 
-                /*
-                new OtoparkGuncelGrafik().setVisible(true);
-                setVisible(false);
-
-                 */
-
             }
         });
 
@@ -209,13 +197,6 @@ public class MainPage2 extends JFrame {
                 TumKayitlariListele tumKayitlariListele = new TumKayitlariListele();
                 tumKayitlariListele.setVisible(true);
                 setVisible(false);
-
-
-                /*
-                new TumKayitlariListele().setVisible(true);
-                dispose();
-
-                 */
             }
         });
 
@@ -226,11 +207,6 @@ public class MainPage2 extends JFrame {
                 otoparkGuncelListe.setVisible(true);
                 setVisible(false);
 
-                /*
-                new OtoparkGuncelListe().setVisible(true);
-                dispose();
-
-                 */
             }
         });
 
@@ -241,17 +217,9 @@ public class MainPage2 extends JFrame {
                 g.setVisible(true);
                 setVisible(false);
 
-/*
-                new Giris().setVisible(true);
-                setVisible(false);
-
- */
             }
         });
     }
 
-    public static void main(String[] args) {
-        new MainPage2().setVisible(true);
-    }
 
 }

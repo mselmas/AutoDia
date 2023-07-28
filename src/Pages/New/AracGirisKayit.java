@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AracGirisKayit3 extends JFrame {
+public class AracGirisKayit extends JFrame {
 
     DbAccess dbAccess;
     DbCrud dbCrud;
@@ -170,7 +170,7 @@ public class AracGirisKayit3 extends JFrame {
 
     }
 
-    public AracGirisKayit3() {
+    public AracGirisKayit() {
 
         dbAccess = new DbAccess("root", "Zurtex96!", "otoparkdb", 3306);
         dbCrud = new DbCrud(dbAccess.getConnection());
@@ -179,7 +179,7 @@ public class AracGirisKayit3 extends JFrame {
         setLocation(650, 200);
         setLayout(null);
         setSize(1000, 900);
-        setTitle("Abonelik İşlemleri");
+        setTitle("AutoDia OOS Araç Giriş Kayıt Ekranı");
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -188,7 +188,7 @@ public class AracGirisKayit3 extends JFrame {
         int newWidth = 75; // Yeni boyut için genişlik ve yükseklik değerlerini belirleyin
         int newHeight = 75;
 
-        Image image1 = new ImageIcon(AracGirisKayit3.class.getResource("/images/greylogo3.png")).getImage(); // Resmi al
+        Image image1 = new ImageIcon(AracGirisKayit.class.getResource("/images/greylogo3.png")).getImage(); // Resmi al
         Image newImage = image1.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH); // Resmi yeni boyutla yeniden ölçeklendirin
         ImageIcon iconResized = new ImageIcon(newImage); // Yeniden boyutlandırılmış resmi kullanarak yeni bir ImageIcon oluştur
 
@@ -196,7 +196,7 @@ public class AracGirisKayit3 extends JFrame {
         ActionListener backListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MainPage2().setVisible(true);
+                new MainPage().setVisible(true);
                 dispose();
             }
         };
@@ -489,7 +489,16 @@ public class AracGirisKayit3 extends JFrame {
 
                     } else if (!resultSet.next()) {
                         JOptionPane.showMessageDialog(null, "Abone kaydı bulunamadı", "Bilgi", JOptionPane.INFORMATION_MESSAGE, iconResized);
-                        return;
+                        arMarkaCombo.setEnabled(true);
+                        arMarkaCombo.setSelectedIndex(0);
+                        arRenkCombo.setEnabled(true);
+                        arRenkCombo.setSelectedIndex(0);
+                        arModelText.setEnabled(true);
+                        arModelText.setText("");
+                        arTurCombo.setEnabled(true);
+                        arTurCombo.setSelectedIndex(0);
+
+
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -549,7 +558,7 @@ public class AracGirisKayit3 extends JFrame {
                         JOptionPane.showMessageDialog(null, "Araç Kaydı Yapılamadı!", "Hata", JOptionPane.INFORMATION_MESSAGE, iconResized);
                     }
 
-                    MainPage2 m = new MainPage2();
+                    MainPage m = new MainPage();
                     m.setVisible(true);
                     setVisible(false);
 
@@ -563,9 +572,5 @@ public class AracGirisKayit3 extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        AracGirisKayit3 aracGirisKayit3 = new AracGirisKayit3();
-        aracGirisKayit3.setVisible(true);
-    }
 
 }

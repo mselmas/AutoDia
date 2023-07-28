@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AbonelikIslemleri extends JFrame {
+public class AboneKayitIslemi extends JFrame {
 
     DbAccess dbAccess;
     DbCrud dbCrud;
@@ -163,7 +163,7 @@ public class AbonelikIslemleri extends JFrame {
     }
 
 
-    public AbonelikIslemleri() {
+    public AboneKayitIslemi() {
 
         dbAccess = new DbAccess("root", "Zurtex96!", "otoparkdb", 3306);
         dbCrud = new DbCrud(dbAccess.getConnection());
@@ -172,7 +172,7 @@ public class AbonelikIslemleri extends JFrame {
         setLocation(650, 200); //Sayfanın ekrandaki konumunu gösteriyor
         setLayout(null);
         setSize(1000, 950); //Sayfanın gerçek büyüklüğünü gösteriyor
-        setTitle("Abonelik İşlemleri");
+        setTitle("AutoDia OOS Abonelik İşlemleri");
         setResizable(false); //ekran boyutunu değiştirmeyi engelliyor
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,7 +195,7 @@ public class AbonelikIslemleri extends JFrame {
         ActionListener backListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MainPage2().setVisible(true);
+                new MainPage().setVisible(true);
                 dispose();
             }
         };
@@ -557,7 +557,7 @@ public class AbonelikIslemleri extends JFrame {
                         || aboneBaslangicCombo.getSelectedIndex() == -1
                         || aboneBitisCombo.getSelectedIndex() == -1) {
                     JOptionPane.showMessageDialog(null, "Tüm alanlar doldurulmalıdır.\nBoş alan bırakılamaz!", "Hata", JOptionPane.ERROR_MESSAGE, iconResized);
-                    new AbonelikIslemleri().setVisible(true);
+                    new AboneKayitIslemi().setVisible(true);
                     return;
 
 
@@ -603,7 +603,7 @@ public class AbonelikIslemleri extends JFrame {
                         JOptionPane.showMessageDialog(null, "Abone kaydedilemedi!", "Hata", JOptionPane.ERROR_MESSAGE, iconResized);
                     }
 
-                    MainPage2 mp2 = new MainPage2();
+                    MainPage mp2 = new MainPage();
                     mp2.setVisible(true);
                     setVisible(false);
 
@@ -618,9 +618,5 @@ public class AbonelikIslemleri extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        new AbonelikIslemleri().setVisible(true);
-
-    }
 
 }
